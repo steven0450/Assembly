@@ -12,12 +12,18 @@ movsx edx,one ; (a)
 movsx edx,two ; (b)
 ```
 
+> (a) FFFF8002h
+>
+> (b) 00004321h
+
 ## 2. What will be the value in EAX after the following lines execute?
 
 ```asm
 mov eax,1002FFFFh
 inc ax
 ```
+
+> 10020000h
 
 ## 3. What will be the value in EAX after the following lines execute?
 
@@ -26,12 +32,16 @@ mov eax,30020000h
 dec ax
 ```
 
+> 30002FFFFh
+
 ## 4. What will be the value in EAX after the following lines execute?
 
 ```asm
 mov eax,1002FFFFh
 neg ax
 ```
+
+> 10020001h
 
 ## 5. What will be the value of the Parity flag after the following lines execute?
 
@@ -40,12 +50,18 @@ mov al,1
 add al,3
 ```
 
+> 1
+
 ## 6. What will be the value of EAX and the Sign flag after the following lines execute?
 
 ```asm
 mov eax,5
 sub eax,6
 ```
+
+> EAX : FFFFFFFFh
+>
+> Sign Flag : 1
 
 ## 7. In the following code, the value in AL is intended to be a signed byte. Explain how the Overflow flag helps, or does not help you, to determine whether the final value in AL falls within a valid signed range.
 
@@ -54,11 +70,15 @@ mov al,-1
 add al,130
 ```
 
+> 도움 안된다. 입력값 130이 이미 부호 있는 8비트 범위(-128 ~ +127)를 벗어났지만, 연산 자체에서는 오버플로 플래그가 켜지지 않으므로 오버플로 플래그만으로는 모름.
+
 ## 8. What value will RAX contain after the following instruction executes?
 
 ```asm
 mov rax,44445555h
 ```
+
+> 0000000044445555h
 
 ## 9. What value will RAX contain after the following instructions execute?
 
@@ -70,6 +90,8 @@ mov rax,0FFFFFFFF00000000h
 mov rax,dwordVal
 ```
 
+> 0000000084326732h
+
 ## 10. What value will EAX contain after the following instructions execute?
 
 ```asm
@@ -80,6 +102,8 @@ mov ax,3
 mov WORD PTR dVal+2,ax
 mov eax,dVal
 ```
+
+> 00035678h
 
 ## 11. What will EAX contain after the following instructions execute?
 
@@ -94,11 +118,19 @@ mov WORD PTR dVal,ax
 mov eax,dVal
 ```
 
+> 12341237h
+
 ## 12. (Yes/No): Is it possible to set the Overflow flag if you add a positive integer to a negative integer?
+
+> no
 
 ## 13. (Yes/No): Will the Overflow flag be set if you add a negative integer to a negative integer and produce a positive result?
 
+> yes
+
 ## 14. (Yes/No): Is it possible for the NEG instruction to set the Overflow flag?
+
+> yes
 
 ## 15. (Yes/No): Is it possible for both the Sign and Zero flags to be set at the same time? Use the following variable definitions for Questions 16–19:
 
@@ -110,17 +142,19 @@ var3 SWORD -16,-42
 var4 DWORD 1,2,3,4,5
 ```
 
+> no
+
 ## 16. For each of the following statements, state whether or not the instruction is valid:
 
 ```asm
-a. mov ax,var1?
-b. mov ax,var2
-c. mov eax,var3
-d. mov var2,var3
-e. movzx ax,var2
-f. movzx var2,al
-g. mov ds,ax
-h. mov ds,1000h
+a. mov ax,var1? > 무효 - 크기 안맞음
+b. mov ax,var2 > 유효
+c. mov eax,var3 > 무효 - 크기 안맞음
+d. mov var2,var3 > 무효 - 메모리 직접 이동 불가
+e. movzx ax,var2 > 무효 - 동일 크기 안됨 (movzx는 목적지가 원본보다 커야됨)
+f. movzx var2,al > 무효 - movzx 목적지는 레지스터여야됨
+g. mov ds,ax > 유효
+h. mov ds,1000h > 세그먼트 레지스터에 직접 이동 안
 ```
 
 ## 17. What will be the hexadecimal value of the destination operand after each of the following instructions execute in sequence?
@@ -129,6 +163,10 @@ h. mov ds,1000h
 mov al,var1 ; a.
 mov ah,[var1+3] ; b.
 ```
+
+> a. mov al,var1 -> AL: FCh
+>
+> b. mov ah,[var1 + 3]-> AH: 01h
 
 ## 18. What will be the value of the destination operand after each of the following instructions execute in sequence?
 
@@ -139,6 +177,14 @@ mov ax,var3 ; c.
 mov ax,[var3-2] ; d.
 ```
 
+> a. mov ax,var2 -> AX: 1000hb.
+>
+> b. mov ax,[var2+4] -> AX: 3000h
+>
+> c. mov ax,var3 -> AX: FFF0h
+>
+> d. mov ax,[var3-2] -> AX: 4000h
+
 ## 19. What will be the value of the destination operand after each of the following instructions execute in sequence?
 
 ```asm
@@ -147,3 +193,13 @@ movzx edx,var2 ; b.
 mov edx,[var4+4] ; c.
 movsx edx,var1 ; d.
 ```
+
+> a. mov edx,var4 -> EDX: 00000001h
+>
+> b. movzx edx,var2 -> EDX: 00001000h
+>
+> c. mov edx,[var4+4] -> EDX: 00000002h
+>
+> d. movsx edx,var1 -> EDX: FFFFFFFCh
+
+
