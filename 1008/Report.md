@@ -1,31 +1,45 @@
 # Report
 
 ## 1. Which instruction pushes all of the 32-bit general-purpose registers on the stack?
+> PUSHAD
 
 ## 2. Which instruction pushes the 32-bit EFLAGS register on the stack?
+> PUSHF
 
 ## 3. Which instruction pops the stack into the EFLAGS register?
+> POPF
+> 
 ## 4. Challenge: Another assembler (called NASM) permits the PUSH instruction to list multiple specific registers. Why might this approach be better than the PUSHAD instruction in MASM? Here is a NASM example:
 ```asm
 PUSH EAX EBX ECX
 ```
+> 불필요한 레지스터를 푸시할 필요가 없어 스택 공간 절약 가능, 효율적이기 때문
 
 ## 5. Challenge: Suppose there were no PUSH instruction. Write a sequence of two other instructions that would accomplish the same as push eax.
 
 ## 6. (True/False): The RET instruction pops the top of the stack into the instruction pointer.
+> True
+
 ## 7. (True/False): Nested procedure calls are not permitted by the Microsoft assembler unless the NESTED operator is used in the procedure definition.
+> False
 
 ## 8. (True/False): In protected mode, each procedure call uses a minimum of 4 bytes of stack space.
+> True
 
 ## 9. (True/False): The ESI and EDI registers cannot be used when passing 32-bit parameters to procedures.
+> False
 
 ## 10. (True/False): The ArraySum procedure (Section 5.2.5) receives a pointer to any array of double words.
+> True
 
 ## 11. (True/False): The USES operator lets you name all registers that are modified within a procedure.
+> True
 
 ## 12. (True/False): The USES operator only generates PUSH instructions, so you must code POP instructions yourself.
+> False
 
 ## 13. (True/False): The register list in the USES directive must use commas to separate the register names.
+> False
 
 ## 14. Which statement(s) in the ArraySum procedure (Section 5.2.5) would have to be modified so it could accumulate an array of 16-bit words? Create such a version of ArraySum and test it.
 
@@ -36,6 +50,7 @@ push 6
 pop eax
 pop eax
 ```
+> 5
 
 ## 16. Which statement is true about what will happen when the example code runs?
 ```asm
@@ -60,6 +75,8 @@ b. The program will halt with a runtime error on Line 10
 c. EAX will equal 20 on line 6
 
 d. The program will halt with a runtime error on Line 11
+
+> d
 
 ## 17. Which statement is true about what will happen when the example code runs?
 ```asm
@@ -87,6 +104,8 @@ c. EAX will equal 30 on line 6
 
 d. The program will halt with a runtime error on Line 13
 
+> c
+
 ## 18. Which statement is true about what will happen when the example code runs?
 ```asm
  1: main PROC
@@ -110,6 +129,8 @@ b. The program will halt with a runtime error on Line 4
 c. EAX will equal 30 on line 6
 
 d. The program will halt with a runtime error on Line 11
+
+> a
 
 ## 19. Which statement is true about what will happen when the example code runs?
 ```asm
@@ -136,6 +157,8 @@ b. The program will halt with a runtime error on Line 13
 c. EDX will equal 0 on line 6
 
 d. The program will halt with a runtime error on Line 11
+
+> a
 
 ## 20. What values will be written to the array when the following code executes?
 ```asm
@@ -171,3 +194,5 @@ mov array[esi],eax
 ret
 proc_3 ENDP
 ```
+
+> 10, 20, 30, 40
