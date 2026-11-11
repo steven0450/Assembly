@@ -40,8 +40,24 @@ call AddThree
 Draw a picture of the procedure’s stack frame immediately after EBP has been pushed on the runtime stack.
 
 ### 2. Create a procedure named AddThree that receives three integer parameters and calculates and returns their sum in the EAX register.
+```asm
+AddThree PROC
+push ebp
+mov ebp, esp
+
+mov eax, [ebp + 8];     1번째 파라미터
+add eax, [ebp + 12];    2번째 파라미터
+add eax, [ebp + 16];    3번째 파라미터
+
+pop ebp
+ret 12;                  STDCALL: 전달받은 3개 인자(12바이트) 스택 정리
+AddThree ENDP
+```
 
 ### 3. Declare a local variable named pArray that is a pointer to an array of doublewords.
+```asm
+LOCAL pArray:PTR DWORD
+```
 
 ### 4. Declare a local variable named buffer that is an array of 20 bytes.
 ```asm
@@ -57,10 +73,25 @@ RET
 USES
 ```
 
+```asm
+LOCAL buffer[20]:BYTE
+```
+
 ### 5. Declare a local variable named pwArray that points to a 16-bit unsigned integer.
+```asm
+LOCAL pwArray:PTR WORD
+```
 
 ### 6. Declare a local variable named myByte that holds an 8-bit signed integer.
+```asm
+LOCAL myByte:SBYTE
+```
+
 ### 7. Declare a local variable named myArray that is an array of 20 doublewords.
+```asm
+LOCAL myArray[20]:DWORD
+```
+
 ### 8. Create a procedure named SetColor that receives two stack parameters: forecolor and backcolor, and calls the SetTextColor procedure from the Irvine32 library.
 ### 9. Create a procedure named WriteColorChar that receives three stack parameters: char, forecolor, and backcolor. It displays a single character, using the color attributes specified in forecolor and backcolor.
 ### 10. Write a procedure named DumpMemory that encapsulates the DumpMem procedure in the Irvine32 library. Use declared parameters and the USES directive. The following is an example of how it should be called: INVOKE DumpMemory, OFFSET array, LENGTHOF array, TYPE array.
