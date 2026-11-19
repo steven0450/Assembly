@@ -33,8 +33,8 @@ Visual Studio 및 Irvine32 라이브러리 환경에서 동작하는 x86 어셈�
 INCLUDE irvine32.inc
 
 .data
-	p1		  BYTE "1번째 정수 입력 : ", 0
-	p2		  BYTE "2번째 정수 입력 : ", 0
+	p1		BYTE "1번째 정수 입력 : ", 0
+	p2		BYTE "2번째 정수 입력 : ", 0
 	strAdd	BYTE "덧셈 결과 : ", 0
 	strSub	BYTE "뻴셈 결과 : ", 0
 	strMul	BYTE "곱셈 결과 : ", 0
